@@ -174,15 +174,13 @@ const App = () => {
         <Button variant="contained" color="primary" onClick={handlePlayPause}>
           {isPlaying ? "Pause" : "Play"}
         </Button>
-        <FormControl margin="normal">
-          <Select value={intervalSeconds} onChange={handleIntervalChange}>
-            <MenuItem value={5}>5 seconds</MenuItem>
-            <MenuItem value={10}>10 seconds</MenuItem>
-            <MenuItem value={15}>15 seconds</MenuItem>
-          </Select>
-        </FormControl>
+        <Select value={intervalSeconds} onChange={handleIntervalChange}>
+          <MenuItem value={5}>5 seconds</MenuItem>
+          <MenuItem value={10}>10 seconds</MenuItem>
+          <MenuItem value={15}>15 seconds</MenuItem>
+        </Select>
         <Button variant="contained" color="secondary" onClick={chooseRandomChord}>
-          Play a Random Chord
+          Get a Random Chord
         </Button>
       </Box>
       <Box mb={2} mt={4}>
