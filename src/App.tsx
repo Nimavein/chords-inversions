@@ -30,6 +30,7 @@ const App = () => {
   });
   const [filteredChords, setFilteredChords] = useState(chords);
   const [selectedChordIndex, setSelectedChordIndex] = useState<number | null>(null);
+  const [selectedInversionIndex, setSelectedInversionIndex] = useState<number>(0);
   const [intervalId, setIntervalId] = useState<number | null>(null);
   const [intervalSeconds, setIntervalSeconds] = useState<number>(10);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -37,7 +38,7 @@ const App = () => {
 
   const getInversionToDisplay = (chord: Chord) => {
     return chord.inversions[
-      filters.inversion !== "all" ? parseInt(filters.inversion) : Math.floor(Math.random() * 3)
+      filters.inversion !== "all" ? parseInt(filters.inversion) : selectedInversionIndex
     ];
   };
 
@@ -73,6 +74,8 @@ const App = () => {
     setFilteredChords(filtered);
   };
 
+  console.log(filteredChords);
+
   const handleFilterChange = (event: SelectChangeEvent<string>) => {
     const { name, value } = event.target;
     setFilters((prevFilters) => ({
@@ -84,7 +87,9 @@ const App = () => {
   const chooseRandomChord = () => {
     if (filteredChords.length > 0) {
       const randomIndex = Math.floor(Math.random() * filteredChords.length);
+      const randomInversionIndex = Math.floor(Math.random() * 3);
       setSelectedChordIndex(randomIndex);
+      setSelectedInversionIndex(randomInversionIndex);
     }
   };
 
