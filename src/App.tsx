@@ -23,10 +23,10 @@ import "./App.css";
 
 const App = () => {
   const [filters, setFilters] = useState<FiltersType>({
-    inversion: "all",
-    accidental: "all",
-    chord: "all",
-    type: "all",
+    inversion: [],
+    accidental: [],
+    chord: [],
+    type: [],
   });
   const [filteredChords, setFilteredChords] = useState(chords);
   const [selectedChordIndex, setSelectedChordIndex] = useState<number | null>(null);
@@ -37,9 +37,7 @@ const App = () => {
   const isDesktop = useMediaQuery("(min-width:1024px)");
 
   const getInversionToDisplay = (chord: Chord) => {
-    return chord.inversions[
-      filters.inversion !== "all" ? parseInt(filters.inversion) : selectedInversionIndex
-    ];
+    return chord.inversions[selectedInversionIndex];
   };
 
   useEffect(() => {
@@ -66,17 +64,15 @@ const App = () => {
   const filterChords = () => {
     const filtered = chords.filter((chord) => {
       return (
-        (filters.accidental === "all" || chord.accidental === filters.accidental) &&
-        (filters.chord === "all" || chord.chord === filters.chord) &&
-        (filters.type === "all" || chord.type === filters.type)
+        (filters.accidental.length === 0 || filters.accidental.includes(chord.accidental)) &&
+        (filters.chord.length === 0 || filters.chord.includes(chord.chord)) &&
+        (filters.type.length === 0 || filters.type.includes(chord.type))
       );
     });
     setFilteredChords(filtered);
   };
 
-  console.log(filteredChords);
-
-  const handleFilterChange = (event: SelectChangeEvent<string>) => {
+  const handleFilterChange = (event: SelectChangeEvent<string[]>) => {
     const { name, value } = event.target;
     setFilters((prevFilters) => ({
       ...prevFilters,
@@ -87,9 +83,14 @@ const App = () => {
   const chooseRandomChord = () => {
     if (filteredChords.length > 0) {
       const randomIndex = Math.floor(Math.random() * filteredChords.length);
-      const randomInversionIndex = Math.floor(Math.random() * 3);
+      if (filters.inversion.length > 0) {
+        const inversionIndex = Math.floor(Math.random() * filters.inversion.length);
+        setSelectedInversionIndex(parseInt(filters.inversion[inversionIndex]));
+      } else {
+        const randomInversionIndex = Math.floor(Math.random() * 3);
+        setSelectedInversionIndex(randomInversionIndex);
+      }
       setSelectedChordIndex(randomIndex);
-      setSelectedInversionIndex(randomInversionIndex);
     }
   };
 
@@ -116,8 +117,8 @@ const App = () => {
               name="inversion"
               value={filters.inversion}
               onChange={handleFilterChange}
+              multiple
             >
-              <MenuItem value="all">All</MenuItem>
               <MenuItem value="0">Root</MenuItem>
               <MenuItem value="1">1st</MenuItem>
               <MenuItem value="2">2nd</MenuItem>
@@ -130,8 +131,8 @@ const App = () => {
               name="accidental"
               value={filters.accidental}
               onChange={handleFilterChange}
+              multiple
             >
-              <MenuItem value="all">All</MenuItem>
               {Object.values(chordAccidentals).map((chordAccidental) => (
                 <MenuItem key={chordAccidental} value={chordAccidental}>
                   {chordAccidental}
@@ -148,8 +149,8 @@ const App = () => {
               name="chord"
               value={filters.chord}
               onChange={handleFilterChange}
+              multiple
             >
-              <MenuItem value="all">All</MenuItem>
               {Object.values(chordNames).map((chordName) => (
                 <MenuItem key={chordName} value={chordName}>
                   {chordName}
@@ -164,8 +165,8 @@ const App = () => {
               name="type"
               value={filters.type}
               onChange={handleFilterChange}
+              multiple
             >
-              <MenuItem value="all">All</MenuItem>
               {Object.values(chordTypes).map((chordType) => (
                 <MenuItem key={chordType} value={chordType}>
                   {chordType}

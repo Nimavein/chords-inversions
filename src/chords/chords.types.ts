@@ -16,10 +16,10 @@ type ChordNameType = keyof typeof chordNames;
 type ChordAccidentalType = keyof typeof chordAccidentals;
 type ChordTypeType = keyof typeof chordTypes;
 
-type ChordInversionFilterType = "all" | "0" | "1" | "2";
-type ChordAccidentalFilterType = "all" | ChordAccidentalType;
-type ChordNameFilterType = "all" | ChordNameType;
-type ChordTypeFilterType = "all" | ChordTypeType;
+type ChordInversionFilterType = Array<"0" | "1" | "2">;
+type ChordAccidentalFilterType = ChordAccidentalType[];
+type ChordNameFilterType = ChordNameType[];
+type ChordTypeFilterType = ChordTypeType[];
 
 export interface FiltersType {
   inversion: ChordInversionFilterType;
