@@ -209,7 +209,11 @@ const App = () => {
               paddingY={6}
               minWidth={300}
             >
-              {getInversionToDisplay(chord)?.name}
+              {`${chord.name}${
+                getInversionToDisplay(chord).level === "Root"
+                  ? ""
+                  : ` (${getInversionToDisplay(chord).level})`
+              }`}
             </Typography>
             <Box
               ref={(el: HTMLElement | null) => {

@@ -8,7 +8,6 @@ export interface Chord {
 
 interface Inversion {
   level: "1st" | "2nd" | "Root";
-  name: string;
   abc: string;
 }
 
