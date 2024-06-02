@@ -6,15 +6,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:C\nL:1/4\n[CEG]",
+        abc: "X:1\nK:C\nL:1/4\n[CEG]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:C\nL:1/4\n[EGC]",
+        abc: "X:2\nK:C\nL:1/4\n[EGc]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:C\nL:1/4\n[GCE]",
+        abc: "X:3\nK:C\nL:1/4\n[Gce]",
       },
     ],
     chord: "C",
@@ -26,15 +26,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:C#\nL:1/4\n[^C^E^G]",
+        abc: "X:1\nK:C#\nL:1/4\n[^CF^G]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:C#\nL:1/4\n[^E^GC]",
+        abc: "X:2\nK:C#\nL:1/4\n[F^G^c]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:C#\nL:1/4\n[^GC^E]",
+        abc: "X:3\nK:C#\nL:1/4\n[^G^cf]",
       },
     ],
     chord: "C",
@@ -46,15 +46,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Db\nL:1/4\n[_D_F_A]",
+        abc: "X:1\nK:Db\nL:1/4\n[_DF_A]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Db\nL:1/4\n[_FA_D]",
+        abc: "X:2\nK:Db\nL:1/4\n[F_A_d]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Db\nL:1/4\n[_A_D_F]",
+        abc: "X:3\nK:Db\nL:1/4\n[_A_df]",
       },
     ],
     chord: "D",
@@ -66,15 +66,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:D\nL:1/4\n[DF^A]",
+        abc: "X:1\nK:D\nL:1/4\n[D^FA]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:D\nL:1/4\n[F^AD]",
+        abc: "X:2\nK:D\nL:1/4\n[^FAd]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:D\nL:1/4\n[^ADF]",
+        abc: "X:3\nK:D\nL:1/4\n[Ad^f]",
       },
     ],
     chord: "D",
@@ -86,15 +86,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:D#\nL:1/4\n[^D^F^A]",
+        abc: "X:1\nK:D#\nL:1/4\n[^DG^A]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:D#\nL:1/4\n[^F^A^D]",
+        abc: "X:2\nK:D#\nL:1/4\n[G^A^d]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:D#\nL:1/4\n[^A^D^F]",
+        abc: "X:3\nK:D#\nL:1/4\n[^A^dg]",
       },
     ],
     chord: "D",
@@ -106,15 +106,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Eb\nL:1/4\n[_E_G_B]",
+        abc: "X:1\nK:Eb\nL:1/4\n[_EG_B]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Eb\nL:1/4\n[G_B_E]",
+        abc: "X:2\nK:Eb\nL:1/4\n[G_B_e]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Eb\nL:1/4\n[B_E_G]",
+        abc: "X:3\nK:Eb\nL:1/4\n[_B_eg]",
       },
     ],
     chord: "E",
@@ -126,15 +126,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:E\nL:1/4\n[EG^B]",
+        abc: "X:1\nK:E\nL:1/4\n[E^GB]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:E\nL:1/4\n[G^BE]",
+        abc: "X:2\nK:E\nL:1/4\n[^GBe]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:E\nL:1/4\n[^BEG]",
+        abc: "X:3\nK:E\nL:1/4\n[Be^g]",
       },
     ],
     chord: "E",
@@ -146,15 +146,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:F\nL:1/4\n[FAC]",
+        abc: "X:1\nK:F\nL:1/4\n[FAc]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:F\nL:1/4\n[ACF]",
+        abc: "X:2\nK:F\nL:1/4\n[Acf]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:F\nL:1/4\n[CFA]",
+        abc: "X:3\nK:F\nL:1/4\n[cfa]",
       },
     ],
     chord: "F",
@@ -166,15 +166,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:F#\nL:1/4\n[^F^A^C]",
+        abc: "X:1\nK:F#\nL:1/4\n[^F^A^c]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:F#\nL:1/4\n[^A^CF]",
+        abc: "X:2\nK:F#\nL:1/4\n[^A^c^f]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:F#\nL:1/4\n[^CF^A]",
+        abc: "X:3\nK:F#\nL:1/4\n[^c^f^a]",
       },
     ],
     chord: "F",
@@ -186,15 +186,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Gb\nL:1/4\n[_G_B_D]",
+        abc: "X:1\nK:Gb\nL:1/4\n[_G_B_d]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Gb\nL:1/4\n[B_D_G]",
+        abc: "X:2\nK:Gb\nL:1/4\n[_B_d_g]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Gb\nL:1/4\n[D_G_B]",
+        abc: "X:3\nK:Gb\nL:1/4\n[_d_g_b]",
       },
     ],
     chord: "G",
@@ -206,15 +206,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:G\nL:1/4\n[GBD]",
+        abc: "X:1\nK:G\nL:1/4\n[GBd]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:G\nL:1/4\n[BDG]",
+        abc: "X:2\nK:G\nL:1/4\n[Bdg]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:G\nL:1/4\n[DGB]",
+        abc: "X:3\nK:G\nL:1/4\n[dgb]",
       },
     ],
     chord: "G",
@@ -226,15 +226,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:G#\nL:1/4\n[^G^B^D]",
+        abc: "X:1\nK:G#\nL:1/4\n[^Gc^d]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:G#\nL:1/4\n[^B^DG]",
+        abc: "X:2\nK:G#\nL:1/4\n[c^d^g]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:G#\nL:1/4\n[^DG^B]",
+        abc: "X:3\nK:G#\nL:1/4\n[^d^gc']",
       },
     ],
     chord: "G",
@@ -246,15 +246,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Ab\nL:1/4\n[_A_C_E]",
+        abc: "X:1\nK:Ab\nL:1/4\n[_ac_e]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Ab\nL:1/4\n[C_E_A]",
+        abc: "X:2\nK:Ab\nL:1/4\n[c_e_a]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Ab\nL:1/4\n[E_A_C]",
+        abc: "X:3\nK:Ab\nL:1/4\n[_e_ac']",
       },
     ],
     chord: "A",
@@ -266,15 +266,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:A\nL:1/4\n[AC^E]",
+        abc: "X:1\nK:A\nL:1/4\n[A^ce]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:A\nL:1/4\n[C^EA]",
+        abc: "X:2\nK:A\nL:1/4\n[^cea]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:A\nL:1/4\n[^EAC]",
+        abc: "X:3\nK:A\nL:1/4\n[ea^c']",
       },
     ],
     chord: "A",
@@ -286,15 +286,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:A#\nL:1/4\n[^A^C^E]",
+        abc: "X:1\nK:A#\nL:1/4\n[^Adf]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:A#\nL:1/4\n[^C^EA]",
+        abc: "X:2\nK:A#\nL:1/4\n[df^a]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:A#\nL:1/4\n[^E^AC]",
+        abc: "X:3\nK:A#\nL:1/4\n[f^ad']",
       },
     ],
     chord: "A",
@@ -306,15 +306,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Bb\nL:1/4\n[_B_D_F]",
+        abc: "X:1\nK:Bb\nL:1/4\n[_Bdf]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Bb\nL:1/4\n[DFB]",
+        abc: "X:2\nK:Bb\nL:1/4\n[df_b]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Bb\nL:1/4\n[FB_D]",
+        abc: "X:3\nK:Bb\nL:1/4\n[f_bd']",
       },
     ],
     chord: "B",
@@ -326,15 +326,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:B\nL:1/4\n[B^D^F]",
+        abc: "X:1\nK:B\nL:1/4\n[B^d^f]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:B\nL:1/4\n[^DFB]",
+        abc: "X:2\nK:B\nL:1/4\n[^d^fb]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:B\nL:1/4\n[FB^D]",
+        abc: "X:3\nK:B\nL:1/4\n[^fb^d']",
       },
     ],
     chord: "B",
@@ -346,15 +346,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Cm\nL:1/4\n[CEbG]",
+        abc: "X:1\nK:Cm\nL:1/4\n[C_EG]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Cm\nL:1/4\n[EbGC]",
+        abc: "X:2\nK:Cm\nL:1/4\n[_EGc]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Cm\nL:1/4\n[GCeb]",
+        abc: "X:3\nK:Cm\nL:1/4\n[Gc_e]",
       },
     ],
     chord: "C",
@@ -366,15 +366,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:C#m\nL:1/4\n[^CE^G]",
+        abc: "X:1\nK:C#m\nL:1/4\n[^CE^G]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:C#m\nL:1/4\n[E^GC]",
+        abc: "X:2\nK:C#m\nL:1/4\n[E^G^c]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:C#m\nL:1/4\n[^GC^E]",
+        abc: "X:3\nK:C#m\nL:1/4\n[^G^ce]",
       },
     ],
     chord: "C",
@@ -386,15 +386,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Dbm\nL:1/4\n[_D_FA]",
+        abc: "X:1\nK:Dbm\nL:1/4\n[_DE_A]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Dbm\nL:1/4\n[FA_D]",
+        abc: "X:2\nK:Dbm\nL:1/4\n[E_A_d]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Dbm\nL:1/4\n[A_DF]",
+        abc: "X:3\nK:Dbm\nL:1/4\n[_A_de]",
       },
     ],
     chord: "D",
@@ -406,15 +406,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Dm\nL:1/4\n[DFAD]",
+        abc: "X:1\nK:Dm\nL:1/4\n[DFA]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Dm\nL:1/4\n[FAD]",
+        abc: "X:2\nK:Dm\nL:1/4\n[FAd]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Dm\nL:1/4\n[ADF]",
+        abc: "X:3\nK:Dm\nL:1/4\n[Adf]",
       },
     ],
     chord: "D",
@@ -426,15 +426,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:D#m\nL:1/4\n[^DF^AD]",
+        abc: "X:1\nK:D#m\nL:1/4\n[^D^F^A]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:D#m\nL:1/4\n[F^AD]",
+        abc: "X:2\nK:D#m\nL:1/4\n[^F^A^d]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:D#m\nL:1/4\n[ADF]",
+        abc: "X:3\nK:D#m\nL:1/4\n[^A^d^f]",
       },
     ],
     chord: "D",
@@ -446,15 +446,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Ebm\nL:1/4\n[_EG_B]",
+        abc: "X:1\nK:Ebm\nL:1/4\n[_E_G_B]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Ebm\nL:1/4\n[G_B_E]",
+        abc: "X:2\nK:Ebm\nL:1/4\n[_G_B_e]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Ebm\nL:1/4\n[B_EG]",
+        abc: "X:3\nK:Ebm\nL:1/4\n[_B_e_g]",
       },
     ],
     chord: "E",
@@ -466,15 +466,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Em\nL:1/4\n[EG^B]",
+        abc: "X:1\nK:Em\nL:1/4\n[EGB]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Em\nL:1/4\n[G^BE]",
+        abc: "X:2\nK:Em\nL:1/4\n[GBe]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Em\nL:1/4\n[^BEG]",
+        abc: "X:3\nK:Em\nL:1/4\n[Beg]",
       },
     ],
     chord: "E",
@@ -486,15 +486,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Fm\nL:1/4\n[FA_C]",
+        abc: "X:1\nK:Fm\nL:1/4\n[F_Ac]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Fm\nL:1/4\n[ACF]",
+        abc: "X:2\nK:Fm\nL:1/4\n[_Acf]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Fm\nL:1/4\n[CFA]",
+        abc: "X:3\nK:Fm\nL:1/4\n[cf_a]",
       },
     ],
     chord: "F",
@@ -506,15 +506,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:F#m\nL:1/4\n[^F^A^C]",
+        abc: "X:1\nK:F#m\nL:1/4\n[^FA^c]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:F#m\nL:1/4\n[^A^CF]",
+        abc: "X:2\nK:F#m\nL:1/4\n[A^c^f]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:F#m\nL:1/4\n[^CF^A]",
+        abc: "X:3\nK:F#m\nL:1/4\n[^c^fa]",
       },
     ],
     chord: "F",
@@ -526,15 +526,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Gbm\nL:1/4\n[_G_BD]",
+        abc: "X:1\nK:Gbm\nL:1/4\n[_GB_d]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Gbm\nL:1/4\n[B_D_G]",
+        abc: "X:2\nK:Gbm\nL:1/4\n[B_d_g]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Gbm\nL:1/4\n[D_G_B]",
+        abc: "X:3\nK:Gbm\nL:1/4\n[_d_gb]",
       },
     ],
     chord: "G",
@@ -546,15 +546,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Gm\nL:1/4\n[GB^D]",
+        abc: "X:1\nK:Gm\nL:1/4\n[G_Bd]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Gm\nL:1/4\n[B^DG]",
+        abc: "X:2\nK:Gm\nL:1/4\n[_Bdg]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Gm\nL:1/4\n[^DGB]",
+        abc: "X:3\nK:Gm\nL:1/4\n[dg_b]",
       },
     ],
     chord: "G",
@@ -566,15 +566,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:G#m\nL:1/4\n[^G^B^D]",
+        abc: "X:1\nK:G#m\nL:1/4\n[^GB^d]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:G#m\nL:1/4\n[^B^DG]",
+        abc: "X:2\nK:G#m\nL:1/4\n[B^d^g]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:G#m\nL:1/4\n[^DG^B]",
+        abc: "X:3\nK:G#m\nL:1/4\n[^d^gb]",
       },
     ],
     chord: "G",
@@ -586,15 +586,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Abm\nL:1/4\n[_A_CE]",
+        abc: "X:1\nK:Abm\nL:1/4\n[_AB_e]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Abm\nL:1/4\n[CE_A]",
+        abc: "X:2\nK:Abm\nL:1/4\n[B_e_a]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Abm\nL:1/4\n[E_A_C]",
+        abc: "X:3\nK:Abm\nL:1/4\n[_e_ab]",
       },
     ],
     chord: "A",
@@ -606,15 +606,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Am\nL:1/4\n[AC^E]",
+        abc: "X:1\nK:Am\nL:1/4\n[Ace]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Am\nL:1/4\n[C^EA]",
+        abc: "X:2\nK:Am\nL:1/4\n[cea]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Am\nL:1/4\n[^EAC]",
+        abc: "X:3\nK:Am\nL:1/4\n[eac']",
       },
     ],
     chord: "A",
@@ -626,15 +626,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:A#m\nL:1/4\n[^A^C^E]",
+        abc: "X:1\nK:A#m\nL:1/4\n[^A^ce]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:A#m\nL:1/4\n[^C^EA]",
+        abc: "X:2\nK:A#m\nL:1/4\n[^ce^a]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:A#m\nL:1/4\n[^E^AC]",
+        abc: "X:3\nK:A#m\nL:1/4\n[e^a^c']",
       },
     ],
     chord: "A",
@@ -646,15 +646,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Bbm\nL:1/4\n[_B_DF]",
+        abc: "X:1\nK:Bbm\nL:1/4\n[_B_df]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Bbm\nL:1/4\n[DF_B]",
+        abc: "X:2\nK:Bbm\nL:1/4\n[_df_b]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Bbm\nL:1/4\n[F_BD]",
+        abc: "X:3\nK:Bbm\nL:1/4\n[f_b_d']",
       },
     ],
     chord: "B",
@@ -666,15 +666,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nM:4/4\nK:Bm\nL:1/4\n[B^D^F]",
+        abc: "X:1\nK:Bm\nL:1/4\n[Bd^f]",
       },
       {
         level: "1st",
-        abc: "X:2\nM:4/4\nK:Bm\nL:1/4\n[^DFB]",
+        abc: "X:2\nK:Bm\nL:1/4\n[d^fb]",
       },
       {
         level: "2nd",
-        abc: "X:3\nM:4/4\nK:Bm\nL:1/4\n[FB^D]",
+        abc: "X:3\nK:Bm\nL:1/4\n[^fbd']",
       },
     ],
     chord: "B",
