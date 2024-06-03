@@ -136,7 +136,7 @@ const App = () => {
 
   return (
     <Container classes={["main-container"]}>
-      <Typography variant="h1" fontSize={32} gutterBottom>
+      <Typography marginTop={3} variant="h1" fontSize={32} gutterBottom>
         Chord Inversions
       </Typography>
       <Box mb={2} display="flex" gap={2}>
@@ -241,7 +241,7 @@ const App = () => {
           </Box>
         )}
       </Box>
-      <Box marginTop="auto" marginBottom={6} gap={2} display="flex" flexDirection={isDesktop ? "row" : "column"}>
+      <Box marginBottom={5} marginTop="auto" gap={2} display="flex" flexDirection={isDesktop ? "row" : "column"}>
         <Button size="large" variant="contained" color="primary" onClick={playChord}>
           Play Chord
         </Button>
