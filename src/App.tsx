@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import abcjs from "abcjs";
 import {
   Box,
@@ -10,6 +10,7 @@ import {
   Button,
   SelectChangeEvent,
   useMediaQuery,
+  Container,
 } from "@mui/material";
 import { chords } from "./chords/chords";
 import {
@@ -34,7 +35,10 @@ const App = () => {
   const [intervalId, setIntervalId] = useState<number | null>(null);
   const [intervalSeconds, setIntervalSeconds] = useState<number>(10);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [visualObject, setVisualObject] = useState<abcjs.TuneObject>();
   const isDesktop = useMediaQuery("(min-width:1024px)");
+  const abcContainerRef = useRef<HTMLDivElement | null>(null);
+  const selectedChord = filteredChords[selectedChordIndex || 0];
 
   const getInversionToDisplay = (chord: Chord) => {
     return chord.inversions[selectedInversionIndex];
@@ -44,6 +48,21 @@ const App = () => {
     filterChords();
     chooseRandomChord();
   }, [filters]);
+
+  useEffect(() => {
+    if (abcContainerRef.current && selectedChordIndex !== null) {
+      const newVisualObject = abcjs.renderAbc(
+        abcContainerRef.current,
+        getInversionToDisplay(selectedChord)?.abc,
+        {
+          responsive: "resize",
+          add_classes: true,
+          staffwidth: isDesktop ? 600 : 200,
+        }
+      );
+      setVisualObject(newVisualObject[0]);
+    }
+  }, [selectedChord, isDesktop]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -103,8 +122,20 @@ const App = () => {
     setIntervalSeconds(value);
   };
 
+  const playChord = async () => {
+    const synth = new abcjs.synth.CreateSynth();
+    const audioContext = new AudioContext();
+    await synth.init({
+      audioContext,
+      visualObj: visualObject,
+      millisecondsPerMeasure: 500,
+    });
+    await synth.prime();
+    synth.start();
+  };
+
   return (
-    <Box p={3}>
+    <Container classes={["main-container"]}>
       <Typography variant="h1" fontSize={32} gutterBottom>
         Chord Inversions
       </Typography>
@@ -178,26 +209,17 @@ const App = () => {
       </Box>
       <Box gap={2} display="flex">
         <Button variant="contained" color="primary" onClick={handlePlayPause}>
-          {isPlaying ? "Pause" : "Play"}
+          {isPlaying ? "Stop Interval" : "Start Interval"}
         </Button>
         <Select value={intervalSeconds} onChange={handleIntervalChange}>
           <MenuItem value={5}>5 seconds</MenuItem>
           <MenuItem value={10}>10 seconds</MenuItem>
           <MenuItem value={15}>15 seconds</MenuItem>
         </Select>
-        <Button variant="contained" color="secondary" onClick={chooseRandomChord}>
-          Get a Random Chord
-        </Button>
       </Box>
       <Box mb={2} mt={4}>
-        {filteredChords.map((chord, index) => (
-          <Box
-            key={index}
-            display={index === selectedChordIndex ? "flex" : "none"}
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-          >
+        {selectedChordIndex !== null && selectedChord && (
+          <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
             <Typography
               bgcolor="#ab003c"
               color="white"
@@ -209,29 +231,30 @@ const App = () => {
               paddingY={6}
               minWidth={300}
             >
-              {`${chord.name}${
-                getInversionToDisplay(chord).level === "Root"
+              {`${selectedChord.name}${
+                getInversionToDisplay(selectedChord).level === "Root"
                   ? ""
-                  : ` (${getInversionToDisplay(chord).level})`
+                  : ` (${getInversionToDisplay(selectedChord).level})`
               }`}
             </Typography>
-            <Box
-              ref={(el: HTMLElement | null) => {
-                if (el && selectedChordIndex !== null && index === selectedChordIndex) {
-                  abcjs.renderAbc(el, getInversionToDisplay(chord)?.abc, {
-                    responsive: "resize",
-                    add_classes: true,
-                    staffwidth: isDesktop ? 600 : 200,
-                  });
-                }
-              }}
-            />
+            <Box marginY={2} ref={abcContainerRef} />
           </Box>
-        ))}
+        )}
       </Box>
-    </Box>
+      <Box marginTop="auto" marginBottom={6} gap={2} display="flex" flexDirection={isDesktop ? "row" : "column"}>
+        <Button size="large" variant="contained" color="primary" onClick={playChord}>
+          Play Chord
+        </Button>
+        <Button size="large" variant="contained" color="secondary" onClick={chooseRandomChord}>
+          Get a Random Chord
+        </Button>
+      </Box>
+    </Container>
   );
 };
 
 export default App;
+
+
+
 
