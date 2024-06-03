@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef } from "react";
 import abcjs from "abcjs";
 import {
@@ -11,15 +12,11 @@ import {
   SelectChangeEvent,
   useMediaQuery,
   Container,
+  IconButton,
 } from "@mui/material";
-import { chords } from "./chords/chords";
-import {
-  Chord,
-  FiltersType,
-  chordAccidentals,
-  chordNames,
-  chordTypes,
-} from "./chords/chords.types";
+import { chords as baseChords } from "./chords/chords";
+import { FiltersType, chordAccidentals, chordNames, chordTypes } from "./chords/chords.types";
+import { VolumeUp, VolumeOff } from "@mui/icons-material";
 import "./App.css";
 
 const App = () => {
@@ -29,40 +26,39 @@ const App = () => {
     chord: [],
     type: [],
   });
-  const [filteredChords, setFilteredChords] = useState(chords);
+  const [chords, setChords] = useState(baseChords);
   const [selectedChordIndex, setSelectedChordIndex] = useState<number | null>(null);
   const [selectedInversionIndex, setSelectedInversionIndex] = useState<number>(0);
   const [intervalId, setIntervalId] = useState<number | null>(null);
   const [intervalSeconds, setIntervalSeconds] = useState<number>(10);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [visualObject, setVisualObject] = useState<abcjs.TuneObject>();
+  const [isChordPlayingOnChange, setIsChordPlayingOnChange] = useState<boolean>(false);
   const isDesktop = useMediaQuery("(min-width:1024px)");
   const abcContainerRef = useRef<HTMLDivElement | null>(null);
-  const selectedChord = filteredChords[selectedChordIndex || 0];
-
-  const getInversionToDisplay = (chord: Chord) => {
-    return chord.inversions[selectedInversionIndex];
-  };
+  const selectedChord = chords[selectedChordIndex || 0];
+  const selectedInversion = selectedChord?.inversions[selectedInversionIndex];
 
   useEffect(() => {
-    filterChords();
     chooseRandomChord();
-  }, [filters]);
+  }, []);
 
   useEffect(() => {
     if (abcContainerRef.current && selectedChordIndex !== null) {
-      const newVisualObject = abcjs.renderAbc(
-        abcContainerRef.current,
-        getInversionToDisplay(selectedChord)?.abc,
-        {
-          responsive: "resize",
-          add_classes: true,
-          staffwidth: isDesktop ? 600 : 200,
-        }
-      );
+      const newVisualObject = abcjs.renderAbc(abcContainerRef.current, selectedInversion?.abc, {
+        responsive: "resize",
+        add_classes: true,
+        staffwidth: isDesktop ? 600 : 200,
+      });
       setVisualObject(newVisualObject[0]);
     }
   }, [selectedChord, isDesktop, selectedInversionIndex]);
+
+  useEffect(() => {
+    if (isChordPlayingOnChange) {
+      playChord();
+    }
+  }, [visualObject]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -80,7 +76,7 @@ const App = () => {
     };
   }, [isPlaying, intervalSeconds]);
 
-  const filterChords = () => {
+  const getFilteredChords = () => {
     const filtered = chords.filter((chord) => {
       return (
         (filters.accidental.length === 0 || filters.accidental.includes(chord.accidental)) &&
@@ -88,7 +84,7 @@ const App = () => {
         (filters.type.length === 0 || filters.type.includes(chord.type))
       );
     });
-    setFilteredChords(filtered);
+    return filtered;
   };
 
   const handleFilterChange = (event: SelectChangeEvent<string[]>) => {
@@ -100,6 +96,8 @@ const App = () => {
   };
 
   const chooseRandomChord = () => {
+    const filteredChords = getFilteredChords();
+    setChords(filteredChords);
     if (filteredChords.length > 0) {
       const randomIndex = Math.floor(Math.random() * filteredChords.length);
       if (filters.inversion.length > 0) {
@@ -128,14 +126,14 @@ const App = () => {
     await synth.init({
       audioContext,
       visualObj: visualObject,
-      millisecondsPerMeasure: 500,
+      millisecondsPerMeasure: 1800,
     });
     await synth.prime();
     synth.start();
   };
 
   return (
-    <Container classes={["main-container"]}>
+    <Container>
       <Typography marginTop={3} variant="h1" fontSize={32} gutterBottom>
         Chord Inversions
       </Typography>
@@ -216,6 +214,9 @@ const App = () => {
           <MenuItem value={10}>10 seconds</MenuItem>
           <MenuItem value={15}>15 seconds</MenuItem>
         </Select>
+        <IconButton onClick={() => setIsChordPlayingOnChange(!isChordPlayingOnChange)}>
+          {isChordPlayingOnChange ? <VolumeUp /> : <VolumeOff />}
+        </IconButton>
       </Box>
       <Box mb={2} mt={4}>
         {selectedChordIndex !== null && selectedChord && (
@@ -227,21 +228,24 @@ const App = () => {
               fontSize="2rem"
               borderRadius={2}
               textAlign="center"
-              paddingX={2}
               paddingY={6}
-              minWidth={300}
+              width={isDesktop ? 360 : "100%"}
             >
               {`${selectedChord.name}${
-                getInversionToDisplay(selectedChord).level === "Root"
-                  ? ""
-                  : ` (${getInversionToDisplay(selectedChord).level})`
+                selectedInversion.level === "Root" ? "" : ` (${selectedInversion.level})`
               }`}
             </Typography>
             <Box marginY={2} ref={abcContainerRef} />
           </Box>
         )}
       </Box>
-      <Box marginBottom={5} marginTop="auto" gap={2} display="flex" flexDirection={isDesktop ? "row" : "column"}>
+      <Box
+        marginBottom={5}
+        marginTop="auto"
+        gap={2}
+        display="flex"
+        flexDirection={isDesktop ? "row" : "column"}
+      >
         <Button size="large" variant="contained" color="primary" onClick={playChord}>
           Play Chord
         </Button>
@@ -254,8 +258,4 @@ const App = () => {
 };
 
 export default App;
-
-
-
-
 
