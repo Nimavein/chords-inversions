@@ -39,6 +39,11 @@ const App = () => {
   const selectedChord = chords[selectedChordIndex || 0];
   const selectedInversion = selectedChord?.inversions[selectedInversionIndex];
 
+  console.log(chords);
+  console.log(filters);
+  
+  
+
   useEffect(() => {
     chooseRandomChord();
   }, []);
@@ -77,7 +82,7 @@ const App = () => {
   }, [isPlaying, intervalSeconds]);
 
   const getFilteredChords = () => {
-    const filtered = chords.filter((chord) => {
+    const filtered = baseChords.filter((chord) => {
       return (
         (filters.accidental.length === 0 || filters.accidental.includes(chord.accidental)) &&
         (filters.chord.length === 0 || filters.chord.includes(chord.chord)) &&
