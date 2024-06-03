@@ -62,7 +62,7 @@ const App = () => {
       );
       setVisualObject(newVisualObject[0]);
     }
-  }, [selectedChord, isDesktop]);
+  }, [selectedChord, isDesktop, selectedInversionIndex]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -254,6 +254,7 @@ const App = () => {
 };
 
 export default App;
+
 
 
 
