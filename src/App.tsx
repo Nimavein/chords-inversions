@@ -39,11 +39,6 @@ const App = () => {
   const selectedChord = chords[selectedChordIndex || 0];
   const selectedInversion = selectedChord?.inversions[selectedInversionIndex];
 
-  console.log(chords);
-  console.log(filters);
-  
-  
-
   useEffect(() => {
     chooseRandomChord();
   }, []);
