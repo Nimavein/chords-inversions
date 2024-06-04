@@ -19,6 +19,8 @@ import { FiltersType, chordAccidentals, chordNames, chordTypes } from "./chords/
 import { VolumeUp, VolumeOff } from "@mui/icons-material";
 import "./App.css";
 
+const maxChordsAmount = 10;
+
 const App = () => {
   const [filters, setFilters] = useState<FiltersType>({
     inversion: [],
@@ -27,35 +29,42 @@ const App = () => {
     type: [],
   });
   const [chords, setChords] = useState(baseChords);
-  const [selectedChordIndex, setSelectedChordIndex] = useState<number | null>(null);
-  const [selectedInversionIndex, setSelectedInversionIndex] = useState<number>(0);
+  const [selectedChords, setSelectedChords] = useState<number[]>([]);
+  const [selectedInversionIndices, setSelectedInversionIndices] = useState<number[]>([]);
   const [intervalId, setIntervalId] = useState<number | null>(null);
   const [intervalSeconds, setIntervalSeconds] = useState<number>(10);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const [visualObject, setVisualObject] = useState<abcjs.TuneObject>();
+  const [visualObject, setVisualObject] = useState<abcjs.TuneObject | null>(null);
   const [isChordPlayingOnChange, setIsChordPlayingOnChange] = useState<boolean>(false);
+  const [numberOfChords, setNumberOfChords] = useState<number>(1);
   const isDesktop = useMediaQuery("(min-width:1024px)");
   const abcContainerRef = useRef<HTMLDivElement | null>(null);
-  const selectedChord = chords[selectedChordIndex || 0];
-  const selectedInversion = selectedChord?.inversions[selectedInversionIndex];
 
   useEffect(() => {
-    chooseRandomChord();
+    chooseRandomChords();
   }, []);
 
   useEffect(() => {
-    if (abcContainerRef.current && selectedChordIndex !== null) {
-      const newVisualObject = abcjs.renderAbc(abcContainerRef.current, selectedInversion?.abc, {
+    if (abcContainerRef.current && selectedChords.length > 0) {
+      const abcString = selectedChords
+        .map((selectedChordIndex, i) => {
+          const selectedChord = chords[selectedChordIndex];
+          const selectedInversion = selectedChord?.inversions[selectedInversionIndices[i]];
+          const chordABC = selectedInversion?.abc.match(/\[.*?\]/g)?.join("") || "";
+          return i === 0 && numberOfChords === 1 ? selectedInversion?.abc : chordABC;
+        })
+        .join(" ");
+      const newVisualObject = abcjs.renderAbc(abcContainerRef.current, abcString, {
         responsive: "resize",
         add_classes: true,
         staffwidth: isDesktop ? 600 : 200,
       });
       setVisualObject(newVisualObject[0]);
     }
-  }, [selectedChord, isDesktop, selectedInversionIndex]);
+  }, [selectedChords, isDesktop, selectedInversionIndices]);
 
   useEffect(() => {
-    if (isChordPlayingOnChange) {
+    if (isChordPlayingOnChange && visualObject) {
       playChord();
     }
   }, [visualObject]);
@@ -63,7 +72,7 @@ const App = () => {
   useEffect(() => {
     if (isPlaying) {
       const id = setInterval(() => {
-        chooseRandomChord();
+        chooseRandomChords();
       }, intervalSeconds * 1000);
       setIntervalId(id);
     } else {
@@ -95,19 +104,26 @@ const App = () => {
     }));
   };
 
-  const chooseRandomChord = () => {
+  const chooseRandomChords = () => {
     const filteredChords = getFilteredChords();
     setChords(filteredChords);
     if (filteredChords.length > 0) {
-      const randomIndex = Math.floor(Math.random() * filteredChords.length);
-      if (filters.inversion.length > 0) {
-        const inversionIndex = Math.floor(Math.random() * filters.inversion.length);
-        setSelectedInversionIndex(parseInt(filters.inversion[inversionIndex]));
-      } else {
-        const randomInversionIndex = Math.floor(Math.random() * 3);
-        setSelectedInversionIndex(randomInversionIndex);
+      const newSelectedChords = [];
+      const newSelectedInversionIndices = [];
+      for (let i = 0; i < numberOfChords; i++) {
+        const randomIndex = Math.floor(Math.random() * filteredChords.length);
+        newSelectedChords.push(randomIndex);
+
+        if (filters.inversion.length > 0) {
+          const inversionIndex = Math.floor(Math.random() * filters.inversion.length);
+          newSelectedInversionIndices.push(parseInt(filters.inversion[inversionIndex]));
+        } else {
+          const randomInversionIndex = Math.floor(Math.random() * 3);
+          newSelectedInversionIndices.push(randomInversionIndex);
+        }
       }
-      setSelectedChordIndex(randomIndex);
+      setSelectedChords(newSelectedChords);
+      setSelectedInversionIndices(newSelectedInversionIndices);
     }
   };
 
@@ -120,29 +136,38 @@ const App = () => {
     setIntervalSeconds(value);
   };
 
+  const handleNumberOfChordsChange = (event: SelectChangeEvent<number>) => {
+    const value = parseInt(event.target.value as string, 10);
+    setNumberOfChords(value);
+  };
+
   const playChord = async () => {
+    if (!visualObject) return;
     const synth = new abcjs.synth.CreateSynth();
     const audioContext = new AudioContext();
     await synth.init({
       audioContext,
       visualObj: visualObject,
-      millisecondsPerMeasure: 1800,
+      millisecondsPerMeasure: 2500,
     });
     await synth.prime();
     synth.start();
   };
 
   const getChordTextStyle = () => {
-    switch (selectedInversionIndex) {
-      case 0:
-        return { backgroundColor: "rgb(6, 128, 16)", color: "#ffffff" };
-      case 1:
-        return { backgroundColor: "rgb(203, 110, 0)", color: "#ffffff" };
-      case 2:
-        return { backgroundColor: "rgb(170, 7, 74)", color: "#ffffff" };
-      default:
-        return { backgroundColor: "rgb(6, 128, 16)", color: "#ffffff" };
+    if (selectedChords.length === 1) {
+      switch (selectedInversionIndices[0]) {
+        case 0:
+          return { backgroundColor: "rgb(6, 128, 16)", color: "#ffffff" };
+        case 1:
+          return { backgroundColor: "rgb(203, 110, 0)", color: "#ffffff" };
+        case 2:
+          return { backgroundColor: "rgb(170, 7, 74)", color: "#ffffff" };
+        default:
+          return { backgroundColor: "rgb(6, 128, 16)", color: "#ffffff" };
+      }
     }
+    return { backgroundColor: "rgb(170, 7, 74)", color: "#ffffff" };
   };
 
   return (
@@ -219,39 +244,47 @@ const App = () => {
         </Box>
       </Box>
       <Box gap={2} display="flex">
-        <Button variant="contained" color="primary" onClick={handlePlayPause}>
-          {isPlaying ? "Stop Interval" : "Start Interval"}
-        </Button>
         <Select value={intervalSeconds} onChange={handleIntervalChange}>
           <MenuItem value={5}>5 seconds</MenuItem>
           <MenuItem value={10}>10 seconds</MenuItem>
           <MenuItem value={15}>15 seconds</MenuItem>
+        </Select>
+        <Select value={numberOfChords} onChange={handleNumberOfChordsChange}>
+          {[...Array(maxChordsAmount).keys()].map((num) => (
+            <MenuItem key={num + 1} value={num + 1}>
+              {num + 1} chord{num > 0 && "s"}
+            </MenuItem>
+          ))}
         </Select>
         <IconButton onClick={() => setIsChordPlayingOnChange(!isChordPlayingOnChange)}>
           {isChordPlayingOnChange ? <VolumeUp /> : <VolumeOff />}
         </IconButton>
       </Box>
       <Box mb={2} mt={4}>
-        {selectedChordIndex !== null && selectedChord && (
-          <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-            <Box
-              boxShadow="8px 8px 21px -10px rgba(66, 68, 90, 1);"
-              bgcolor={getChordTextStyle().backgroundColor}
-              borderRadius={2}
-              textAlign="center"
-              paddingY={6}
-              width={isDesktop ? 360 : "100%"}
-            >
-              <Typography color={getChordTextStyle().color} variant="h2" fontSize="2rem">
-                {`${selectedChord.name}${
+        <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+          <Box
+            boxShadow="8px 8px 21px -10px rgba(66, 68, 90, 1);"
+            bgcolor={getChordTextStyle().backgroundColor}
+            borderRadius={2}
+            textAlign="center"
+            paddingY={6}
+            paddingX={2}
+            width={isDesktop ? 600 : "100%"}
+          >
+            <Typography color={getChordTextStyle().color} variant="h2" fontSize="2rem">
+              {selectedChords.map((selectedChordIndex, index) => {
+                const selectedChord = chords[selectedChordIndex];
+                const selectedInversion =
+                  selectedChord?.inversions[selectedInversionIndices[index]];
+                return `${selectedChord.name}${
                   selectedInversion.level === "Root" ? "" : ` (${selectedInversion.level})`
-                }`}
-              </Typography>
-            </Box>
-
-            <Box marginY={2} ref={abcContainerRef} />
+                }${index < selectedChords.length - 1 ? " | " : ""}`;
+              })}
+            </Typography>
           </Box>
-        )}
+
+          <Box marginY={2} ref={abcContainerRef} />
+        </Box>
       </Box>
       <Box
         marginBottom={5}
@@ -260,11 +293,14 @@ const App = () => {
         display="flex"
         flexDirection={isDesktop ? "row" : "column"}
       >
+        <Button size="large" variant="outlined" color="primary" onClick={handlePlayPause}>
+          {isPlaying ? "Stop Interval" : "Start Interval"}
+        </Button>
         <Button size="large" variant="contained" color="primary" onClick={playChord}>
           Play Chord
         </Button>
-        <Button size="large" variant="contained" color="secondary" onClick={chooseRandomChord}>
-          Get a Random Chord
+        <Button size="large" variant="contained" color="secondary" onClick={chooseRandomChords}>
+          Get Random Chords
         </Button>
       </Box>
     </Container>
@@ -272,5 +308,4 @@ const App = () => {
 };
 
 export default App;
-
 

@@ -12,6 +12,10 @@ body {
     display: flex;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .MuiContainer-root {
     height: inherit;
     display: flex !important;
