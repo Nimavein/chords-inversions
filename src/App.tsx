@@ -137,7 +137,7 @@ const App = () => {
       case 0:
         return { backgroundColor: "rgb(6, 128, 16)", color: "#ffffff" };
       case 1:
-        return { backgroundColor: "rgb(194, 115, 11)", color: "#ffffff" };
+        return { backgroundColor: "rgb(203, 110, 0)", color: "#ffffff" };
       case 2:
         return { backgroundColor: "rgb(170, 7, 74)", color: "#ffffff" };
       default:
@@ -272,4 +272,5 @@ const App = () => {
 };
 
 export default App;
+
 
