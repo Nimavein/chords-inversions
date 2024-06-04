@@ -95,8 +95,6 @@ const App = () => {
     }));
   };
 
-  console.log(chords);
-  
 
   const chooseRandomChord = () => {
     const filteredChords = getFilteredChords();
