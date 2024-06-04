@@ -95,7 +95,6 @@ const App = () => {
     }));
   };
 
-
   const chooseRandomChord = () => {
     const filteredChords = getFilteredChords();
     setChords(filteredChords);
@@ -131,6 +130,19 @@ const App = () => {
     });
     await synth.prime();
     synth.start();
+  };
+
+  const getChordTextStyle = () => {
+    switch (selectedInversionIndex) {
+      case 0:
+        return { backgroundColor: "rgb(6, 128, 16)", color: "#ffffff" };
+      case 1:
+        return { backgroundColor: "rgb(194, 115, 11)", color: "#ffffff" };
+      case 2:
+        return { backgroundColor: "rgb(170, 7, 74)", color: "#ffffff" };
+      default:
+        return { backgroundColor: "rgb(6, 128, 16)", color: "#ffffff" };
+    }
   };
 
   return (
@@ -222,20 +234,21 @@ const App = () => {
       <Box mb={2} mt={4}>
         {selectedChordIndex !== null && selectedChord && (
           <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-            <Typography
-              bgcolor="#ab003c"
-              color="white"
-              variant="h2"
-              fontSize="2rem"
+            <Box
+              boxShadow="8px 8px 21px -10px rgba(66, 68, 90, 1);"
+              bgcolor={getChordTextStyle().backgroundColor}
               borderRadius={2}
               textAlign="center"
               paddingY={6}
               width={isDesktop ? 360 : "100%"}
             >
-              {`${selectedChord.name}${
-                selectedInversion.level === "Root" ? "" : ` (${selectedInversion.level})`
-              }`}
-            </Typography>
+              <Typography color={getChordTextStyle().color} variant="h2" fontSize="2rem">
+                {`${selectedChord.name}${
+                  selectedInversion.level === "Root" ? "" : ` (${selectedInversion.level})`
+                }`}
+              </Typography>
+            </Box>
+
             <Box marginY={2} ref={abcContainerRef} />
           </Box>
         )}
