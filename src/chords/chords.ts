@@ -526,15 +526,15 @@ export const chords: Chord[] = [
     inversions: [
       {
         level: "Root",
-        abc: "X:1\nK:Gbm\nL:1/4\n[_GB_d]",
+        abc: "X:1\nK:Gbm\nL:1/4\n[_GA_d]",
       },
       {
         level: "1st",
-        abc: "X:2\nK:Gbm\nL:1/4\n[B_d_g]",
+        abc: "X:2\nK:Gbm\nL:1/4\n[A_d_g]",
       },
       {
         level: "2nd",
-        abc: "X:3\nK:Gbm\nL:1/4\n[_d_gb]",
+        abc: "X:3\nK:Gbm\nL:1/4\n[_d_ga]",
       },
     ],
     chord: "G",
